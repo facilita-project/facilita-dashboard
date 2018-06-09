@@ -6,8 +6,9 @@
         <router-view></router-view>
       </div>
       <div class="auth-wallpaper col-6 d-none d-lg-flex">
-        <div class="oblique"></div>
-        <router-link class="i-vuestic" :to="{path: '/'}"></router-link>
+        <!-- <div class="oblique"></div> -->
+        <img src="../../assets/icons/logo.png" width="350" alt="">
+        <!-- <router-link class="i-vuestic" :to="{path: '/'}"></router-link> -->
       </div>
     </div>
   </div>

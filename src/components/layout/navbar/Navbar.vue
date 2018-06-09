@@ -13,8 +13,14 @@
         <a class="menu-icon i-menu-collapsed" href="#" @click.prevent="toggleSidebar(true)" v-else></a>
       </div>
 
-      <div class="navbar-text offset-md-1 col-md-7 d-none d-lg-flex align-items-center justify-content-center">
-        <!-- {{'navbar.messageUs' | translate}}&nbsp;<a href="mailto:hello@epicmax.co">hello@epicmax.co</a> -->
+      <div class="offset-md-1 col-md-7 d-none d-lg-flex align-items-center justify-content-center">
+        <div class="col form-group form-group--search with-icon-right">
+          <div class="input-group">
+            <input id="simple-input" style="color: white" />
+            <i class="fa fa-search icon-right input-icon"></i>
+            <label class="control-label" for="simple-input">Pesquisar..</label><i class="bar"></i>
+          </div>
+        </div>
       </div>
 
       <div class="col nav-item dropdown navbar-dropdown d-flex align-items-center justify-content-center" v-dropdown>
@@ -129,6 +135,10 @@
   @import "~bootstrap/scss/mixins/breakpoints";
   @import "~bootstrap/scss/functions";
   @import "~bootstrap/scss/variables";
+
+  .form-group--search {
+    margin-bottom: 0;
+  }
 
   .navbar {
     .layout-fixed & {

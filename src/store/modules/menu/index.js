@@ -1,23 +1,27 @@
 import * as types from '../../mutation-types'
-import statistics from './statistics'
-import forms from './forms'
+// import statistics from './statistics'
+// import forms from './forms'
 import dashboard from './dashboard'
-import ui from './ui'
-import maps from './maps'
-import tables from './tables'
-import auth from './auth'
-import extra from './extra'
+// import ui from './ui'
+// import maps from './maps'
+// import tables from './tables'
+// import auth from './auth'
+// import extra from './extra'
+import notifications from './notifications'
+import informations from './informations'
 
 const state = {
   items: [
     dashboard,
-    statistics,
-    forms,
-    tables,
-    ui,
-    extra,
-    auth,
-    maps
+    notifications,
+    informations
+    // statistics,
+    // forms,
+    // tables,
+    // ui,
+    // extra,
+    // auth,
+    // maps
   ]
 }
 
