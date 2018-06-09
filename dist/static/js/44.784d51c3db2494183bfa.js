@@ -1,2 +1,0 @@
-webpackJsonp([44],{"8p7a":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r=t("Q2g6"),l=t("VU/8"),u=l(null,r.a,!1,null,null,null);n.default=u.exports},Q2g6:function(e,n,t){"use strict";var r=function(){var e=this,n=e.$createElement;return(e._self._c||n)("h1",[e._v("notifications")])},l=[],u={render:r,staticRenderFns:l};n.a=u}});
-//# sourceMappingURL=44.784d51c3db2494183bfa.js.map
