@@ -1,0 +1,30 @@
+[
+  {
+    "CNPJ": "07.728.38110001-79",
+    "name": "Emilly louize",
+    "startDate": "14/11/2017",
+    "status": "Ok",
+    "activity": "Desenvolvimento de software",
+    "place": "Brasil, SP",
+    "img": "http://i.imgur.com/NLrdqsk.png",
+    "brand": "info",
+    "score": {
+      "label": "Baixo Risco",
+      "value": "4"
+    }
+  },
+  {
+    "CNPJ": "00.000.381234004-79",
+    "name": "Carlos Bezarra",
+    "startDate": "14/11/2016",
+    "status": "Ok",
+    "brand": "danger",
+    "activity": "Consultor",
+    "place": "Brasil, RJ",
+    "img": "http://www.atpworldtour.com/-/media/tennis/players/head-shot/lq/active/galdos_sergio_2016.png",
+    "score": {
+      "label": "Alto Risco",
+      "value": "1"
+    }
+  }
+]
