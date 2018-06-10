@@ -1,52 +1,76 @@
 <template>
   <vuestic-widget>
-    <div class="row">
+    <div
+      v-for="(profile, index) in profiles"
+      :key="index"
+      class="row">
       <div class="col-3">
         <vuestic-profile-card
-          :name="name" 
-          :location="location" 
-          :photoSource="photoSource"
-          :social="social">
+          style="text-align: center"
+          :name="profile.razao_social"
+          :location="profile.cidade.toLowerCase()" 
+          :photoSource="profile.imageUrl"
+          :social="[]">
         </vuestic-profile-card>
       </div>
       <div class="col-6" style="margin-top: 50px">
         <ul style="list-style: none; padding-left: 0px">
-          <li><strong>CNPJ</strong>: 29070762000146</li>
-          <li><strong>Abertura</strong>: 14/11/2017</li>
+          <li><strong>CNPJ</strong>: {{profile.cnpj}}</li>
+          <li><strong>Abertura</strong>: {{formatDate(profile.data_fundacao)}}</li>
           <li><strong>Status</strong>: OK</li>
-          <li><strong>Atividade</strong>: Desenvolvimento de software</li>
+          <li><strong>Atividade</strong>: {{profile.atividades}}</li>
         </ul>
-        <button class="btn btn-primary btn-sm">
+        <button
+          @click="request(profile)"
+          class="btn btn-primary btn-sm">
           SOLICITAR DADOS
         </button>
       </div>
       <div class="col-3" style="margin-top: 50px;">
-        <vuestic-widget class="info-widget brand-info">
+        <vuestic-widget :class="`info-widget brand-${profile.brand}`">
           <div class="info-widget-inner">
             <div class="info-widget-inner has-chart">
               <div class="stats">
                 <div class="stats-number">
-                  4
+                  {{(profile.score || {}).value}}
                 </div>
-                <div class="stats-title">Baixo Risco</div>
+                <div class="stats-title">{{(profile.score || {}).label}}</div>
               </div>
             </div>
           </div>
         </vuestic-widget>
-
       </div>
     </div>
+    <hr>
   </vuestic-widget>
 </template>
 
 <script>
+import moment from 'moment'
+import {mapActions} from 'vuex'
+
 export default {
   name: 'Profile',
   props: {
-    name: { type: String, default: 'Veronique Lee' },
-    location: { type: String, default: 'Malaga, Spain' },
-    photoSource: { type: String, default: 'http://i.imgur.com/NLrdqsk.png' },
-    social: { type: Array, default: [] }
+    profiles: Array
+  },
+  methods: {
+    ...mapActions([
+      'changeSearchBarStatus'
+    ]),
+    formatDate (date) {
+      return moment(date).format('DD/MM/YYYY')
+    },
+    request (profile) {
+      fetch('https://facilitafn.azurewebsites.net/api/FacilitaNotificacaoInsert?code=zXnBK7Pf13eer8AtHm767IXAZ2Po8/cvDlYPUcI/Mx2C2jEgXbDHZQ==', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ company: 'Itau', type: 'solicitação de crédito' })
+      })
+      this.changeSearchBarStatus(false)
+    }
   }
 }
 </script>

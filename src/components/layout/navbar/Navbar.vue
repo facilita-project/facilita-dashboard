@@ -19,9 +19,10 @@
             <input
               id="simple-input"
               style="color: white"
-              @focus="changeSearchBarStatus(true)"
-              @blur="changeSearchBarStatus(false)" />
-            <i class="fa fa-search icon-right input-icon"></i>
+              v-model="word"
+              @input="setSearchWord($event)"
+              @focus="changeSearchBarStatus(true)"/>
+            <i v-if="searchBarStatus" @click="changeSearchBarStatus(false)" class="fa fa-close icon-right input-icon" style="cursor: pointer"></i>
             <label class="control-label" for="simple-input">Pesquisar..</label><i class="bar"></i>
           </div>
         </div>
@@ -92,7 +93,7 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import {mapGetters, mapActions, mapState} from 'vuex'
   import LanguageSelector from './LanguageSelector'
 
   export default {
@@ -104,6 +105,7 @@
 
     data () {
       return {
+        word: '',
         langs: [
           {
             code: 'gb',
@@ -118,6 +120,9 @@
     },
 
     computed: {
+      ...mapState({
+        searchBarStatus: (state) => state.ui.searchBarStatus
+      }),
       ...mapGetters([
         'sidebarOpened',
         'toggleWithoutAnimation'
@@ -129,7 +134,8 @@
         'closeMenu',
         'toggleSidebar',
         'isToggleWithoutAnimation',
-        'changeSearchBarStatus'
+        'changeSearchBarStatus',
+        'setSearchWord'
       ])
     }
   }

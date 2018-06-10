@@ -7,7 +7,7 @@
         <vuestic-breadcrumbs v-if="!cannotShowRouter" :breadcrumbs="breadcrumbs"/>
         <vuestic-pre-loader v-show="isLoading" ref="preLoader" class="pre-loader"></vuestic-pre-loader>
         <router-view v-if="!cannotShowRouter"></router-view>
-        <Profile v-if="cannotShowRouter"/>
+        <Profile v-if="cannotShowRouter" :profiles="profilesSorted" />
       </main>
     </div>
     <div class="made-by-footer">
@@ -22,6 +22,7 @@
     mapState
   } from 'vuex'
 
+  import {filter} from 'lodash'
   import Navbar from './navbar/Navbar'
   import Sidebar from './sidebar/Sidebar'
   import Resize from 'directives/ResizeHandler'
@@ -43,9 +44,39 @@
         default: false,
       }
     },
+    data: () => ({
+      profiles: [],
+      profilesSorted: []
+    }),
+    created () {
+      if (!this.profiles.length) {
+        fetch('https://facilitafn.azurewebsites.net/api/FacilitaListarEmpresas?code=5YpoqVzrIMNKICdD50CdlMG5IxLmqXBSXif2BFXW4MAK/Axwc1nRuA==')
+          .then(res => res.text())
+          .then(JSON.parse)
+          .then(JSON.parse)
+          .then(res => {
+            console.log(res)
+            this.profiles = res
+            this.profilesSorted = res
+          })
+      }
+    },
+    watch: {
+      searchWord () {
+        console.log('Search word called', this.searchWord)
+        this.profilesSorted = filter(this.profiles, (p) => {
+          if (!this.searchWord) return p
+          const regexp = new RegExp(`${this.searchWord}*`, 'ig')
+          if (regexp.test(p.name)) {
+            return p
+          }
+        })
+      }
+    },
     computed: {
       ...mapState({
-        searchBarStatus: (state) => state.ui.searchBarStatus
+        searchBarStatus: (state) => state.ui.searchBarStatus,
+        searchWord: (state) => state.ui.searchWord
       }),
       ...mapGetters([
         'sidebarOpened',

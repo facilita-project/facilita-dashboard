@@ -1,11 +1,11 @@
 <template>
   <div class="dashboard">
 
-    <dashboard-info-widgets></dashboard-info-widgets>
+    <!-- <dashboard-info-widgets></dashboard-info-widgets> -->
 
     <div class="row">
       <div class="col-md-12">
-        <vuestic-widget class="chart-widget" :headerText="'charts.lineChart' | translate">
+        <vuestic-widget class="chart-widget" headerText="Analise dos dados e predição para futuro">
           <vuestic-chart :data="lineChartData" type="line"></vuestic-chart>
         </vuestic-widget>
       </div>
@@ -29,7 +29,7 @@
       </vuestic-tabs>
     </vuestic-widget> -->
 
-    <dashboard-bottom-widgets></dashboard-bottom-widgets>
+    <!-- <dashboard-bottom-widgets></dashboard-bottom-widgets> -->
 
   </div>
 </template>
