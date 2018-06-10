@@ -5,6 +5,7 @@ import lazyLoading from './lazyLoading'
 
 export default {
   name: 'auth',
+  hidden: true,
   meta: {
     expanded: false,
     title: 'menu.auth',

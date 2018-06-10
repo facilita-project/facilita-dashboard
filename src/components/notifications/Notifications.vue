@@ -1,22 +1,21 @@
 <template>
   <div class="row">
     <div class="col">
-      <vuestic-widget>
-        <h1>Notification safadown 1</h1>
-      </vuestic-widget>
-    </div>
-    <div class="col">
-      <vuestic-widget>
-        <h1>Notifications safadown 2</h1>
-      </vuestic-widget>
+      <WidgetMessage type="analise de crédito" />
     </div>
 
+    <div class="col">
+      <WidgetMessage type="extensão de prazo" />
+    </div>
   </div>
 </template>
 
 <script>
+import WidgetMessage from './WidgetMessage'
+
 export default {
-  name: 'Notifications'
+  name: 'Notifications',
+  components: { WidgetMessage }
 }
 </script>
 

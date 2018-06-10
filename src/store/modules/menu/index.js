@@ -5,7 +5,7 @@ import dashboard from './dashboard'
 // import ui from './ui'
 // import maps from './maps'
 // import tables from './tables'
-// import auth from './auth'
+import auth from './auth'
 // import extra from './extra'
 import notifications from './notifications'
 import informations from './informations'
@@ -14,13 +14,13 @@ const state = {
   items: [
     dashboard,
     notifications,
-    informations
+    informations,
     // statistics,
     // forms,
     // tables,
     // ui,
     // extra,
-    // auth,
+    auth
     // maps
   ]
 }

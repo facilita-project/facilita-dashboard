@@ -1,6 +1,9 @@
 import utils from 'services/utils'
 
-const menuItems = state => state.menu.items
+const menuItems = state =>
+  state.menu.items.filter((route) => {
+    if (!route.hidden) return route
+  })
 const sidebarOpened = state => state.app.sidebar.opened
 const toggleWithoutAnimation = state => state.app.sidebar.withoutAnimation
 const config = state => state.app.config
