@@ -74,7 +74,7 @@
         <a class="nav-link dropdown-toggle d-flex align-items-center justify-content" href="#"
            @click.prevent="closeMenu">
           <span class="avatar-container">
-            <img src="http://i.imgur.com/nfa5itq.png"/>
+            <img src="https://www.sigmanest.com/wp-content/uploads/2017/11/Dummy.jpg"/>
           </span>
         </a>
         <div class="dropdown-menu last">

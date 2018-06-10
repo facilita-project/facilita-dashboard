@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
 
-    <!-- <dashboard-info-widgets></dashboard-info-widgets> -->
+    <dashboard-info-widgets></dashboard-info-widgets>
 
     <div class="row">
       <div class="col-md-12">
