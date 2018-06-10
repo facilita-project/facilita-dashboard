@@ -1,12 +1,6 @@
 <template>
   <div class="row">
-    <div class="col">
-      <WidgetMessage type="analise de crédito" />
-    </div>
-
-    <div class="col">
-      <WidgetMessage type="extensão de prazo" />
-    </div>
+    <WidgetMessage type="analise de crédito" v-for="n in 5" :key="n"/>
   </div>
 </template>
 
