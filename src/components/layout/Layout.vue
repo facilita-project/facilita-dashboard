@@ -4,9 +4,10 @@
     <sidebar></sidebar>
     <div class="content-wrap" id="content-wrap">
       <main id="content" class="content" role="main">
-        <vuestic-breadcrumbs :breadcrumbs="breadcrumbs"/>
-         <vuestic-pre-loader v-show="isLoading" ref="preLoader" class="pre-loader"></vuestic-pre-loader>
-        <router-view v-show="!isLoading"></router-view>
+        <vuestic-breadcrumbs v-if="!cannotShowRouter" :breadcrumbs="breadcrumbs"/>
+        <vuestic-pre-loader v-show="isLoading" ref="preLoader" class="pre-loader"></vuestic-pre-loader>
+        <router-view v-if="!cannotShowRouter"></router-view>
+        <Profile v-if="cannotShowRouter"/>
       </main>
     </div>
     <div class="made-by-footer">
@@ -16,18 +17,22 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import {
+    mapGetters,
+    mapState
+  } from 'vuex'
 
   import Navbar from './navbar/Navbar'
   import Sidebar from './sidebar/Sidebar'
   import Resize from 'directives/ResizeHandler'
+  import Profile from 'components/profile/Profile.vue'
 
   export default {
     name: 'layout',
-
     components: {
       Navbar,
-      Sidebar
+      Sidebar,
+      Profile
     },
     directives: {
       resize: Resize
@@ -39,11 +44,17 @@
       }
     },
     computed: {
+      ...mapState({
+        searchBarStatus: (state) => state.ui.searchBarStatus
+      }),
       ...mapGetters([
         'sidebarOpened',
         'toggleWithoutAnimation',
         'isLoading'
       ]),
+      cannotShowRouter () {
+        return !this.isLoading && this.searchBarStatus
+      },
       classObject: function () {
         return {
           'layout-fixed': this.fixed,
@@ -53,7 +64,7 @@
       },
       breadcrumbs () {
         return this.$store.getters.breadcrumbs(this.$route.name)
-      },
+      }
     }
   }
 </script>

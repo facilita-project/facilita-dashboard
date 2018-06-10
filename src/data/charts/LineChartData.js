@@ -4,19 +4,19 @@ import store from 'vuex-store'
 let palette = store.getters.palette
 
 export default {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro', 'Janeiro', 'Fevereiro', 'Março'],
   datasets: [
     {
-      label: 'Debit',
+      label: 'Original',
       backgroundColor: utils.hex2rgb(palette.primary, 0.6).css,
       borderColor: palette.transparent,
-      data: [40, 39, 10, 40, 39, 80, 40]
+      data: [8000, 8500, 9000, 9000, 8000, 8000, 9000, 9000, 8000, 8300, 9000, 8200, 0, 0, 0]
     },
     {
-      label: 'Credit',
+      label: 'Predição',
       backgroundColor: utils.hex2rgb(palette.info, 0.6).css,
       borderColor: palette.transparent,
-      data: [50, 20, 70, 30, 10, 5, 70]
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8518.2, 8848.6, 8851.4]
     }
   ],
 }

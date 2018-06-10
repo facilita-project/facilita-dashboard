@@ -1,7 +1,7 @@
 <template>
   <vuestic-widget>
-    <h3>Solititação de {{type}}</h3>
-    <p>A empresa Brasdesco esta solicitando acesso aos seus dados para {{type}}, deseja conceder?</p>
+    <h3>Solicitação de {{type}}</h3>
+    <p>A empresa {{company}} esta solicitando acesso aos seus dados para {{type}}, deseja conceder?</p>
     <div class="row">
       <div class="col-md-12">
         <button class="btn btn-primary btn-sm">
@@ -19,7 +19,8 @@
 export default {
   name: 'WidgetMessage',
   props: {
-    type: String
+    type: String,
+    company: { type: String, default: 'Brasdesco' }
   }
 }
 </script>

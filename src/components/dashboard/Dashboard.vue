@@ -3,7 +3,14 @@
 
     <dashboard-info-widgets></dashboard-info-widgets>
 
-    <vuestic-widget class="no-padding no-v-padding">
+    <div class="row">
+      <div class="col-md-12">
+        <vuestic-widget class="chart-widget" :headerText="'charts.lineChart' | translate">
+          <vuestic-chart :data="lineChartData" type="line"></vuestic-chart>
+        </vuestic-widget>
+      </div>
+    </div>
+    <!-- <vuestic-widget class="no-padding no-v-padding">
       <vuestic-tabs
         :names="[$t('dashboard.dataVisualization'), $t('dashboard.usersAndMembers'), $t('dashboard.setupProfile'), $t('dashboard.features')]"
         ref="tabs">
@@ -20,7 +27,7 @@
           <features-tab></features-tab>
         </div>
       </vuestic-tabs>
-    </vuestic-widget>
+    </vuestic-widget> -->
 
     <dashboard-bottom-widgets></dashboard-bottom-widgets>
 
@@ -28,6 +35,7 @@
 </template>
 
 <script>
+  import LineChartData from 'data/charts/LineChartData'
   import DashboardInfoWidgets from './DashboardInfoWidgets'
   import UsersMembersTab from './users-and-members-tab/UsersMembersTab.vue'
   import SetupProfileTab from './setup-profile-tab/SetupProfileTab.vue'
@@ -45,7 +53,9 @@
       FeaturesTab,
       DashboardBottomWidgets
     },
-
+    data: () => ({
+      lineChartData: LineChartData
+    }),
     methods: {
       launchEpicmaxToast () {
         this.showToast(`Let's work together!`, {

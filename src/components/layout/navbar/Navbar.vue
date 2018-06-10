@@ -16,7 +16,11 @@
       <div class="offset-md-1 col-md-7 d-none d-lg-flex align-items-center justify-content-center">
         <div class="col form-group form-group--search with-icon-right">
           <div class="input-group">
-            <input id="simple-input" style="color: white" />
+            <input
+              id="simple-input"
+              style="color: white"
+              @focus="changeSearchBarStatus(true)"
+              @blur="changeSearchBarStatus(false)" />
             <i class="fa fa-search icon-right input-icon"></i>
             <label class="control-label" for="simple-input">Pesquisar..</label><i class="bar"></i>
           </div>
@@ -124,7 +128,8 @@
       ...mapActions([
         'closeMenu',
         'toggleSidebar',
-        'isToggleWithoutAnimation'
+        'isToggleWithoutAnimation',
+        'changeSearchBarStatus'
       ])
     }
   }
