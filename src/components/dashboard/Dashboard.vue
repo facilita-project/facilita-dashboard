@@ -35,13 +35,19 @@
 </template>
 
 <script>
-  import LineChartData from 'data/charts/LineChartData'
+/* eslint-disable */
+  import axios from 'axios'
+  // import LineChartData from 'data/charts/LineChartData'
   import DashboardInfoWidgets from './DashboardInfoWidgets'
   import UsersMembersTab from './users-and-members-tab/UsersMembersTab.vue'
   import SetupProfileTab from './setup-profile-tab/SetupProfileTab.vue'
   import FeaturesTab from './features-tab/FeaturesTab.vue'
   import DataVisualisationTab from './data-visualisation-tab/DataVisualisation.vue'
   import DashboardBottomWidgets from './DashboardBottomWidgets.vue'
+  import store from 'vuex-store'
+  import utils from 'services/utils'
+
+  let palette = store.getters.palette
 
   export default {
     name: 'dashboard',
@@ -54,8 +60,34 @@
       DashboardBottomWidgets
     },
     data: () => ({
-      lineChartData: LineChartData
+      lineChartData: {}
     }),
+    mounted () {
+      axios.post('https://facilitafn.azurewebsites.net/api/FacilitaPrediction2?code=DhCI4eDE/YattX8HnXUc8rLKT85B3UnXy8NSbfxWFbSQeVIML/Txqw==', {
+          "nome": "G4 INFO SERVICOS DE INFORMATICA LTDA"
+        })
+        .then(result => JSON.parse(result.data))
+        .then(response => {
+          console.log('response', response)
+          this.lineChartData = {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro', 'Janeiro', 'Fevereiro', 'Março'],
+            datasets: [
+              {
+                label: 'Original',
+                backgroundColor: utils.hex2rgb(palette.primary, 0.6).css,
+                borderColor: palette.transparent,
+                data: response.datasets[0].data
+              },
+              {
+                label: 'Predição',
+                backgroundColor: utils.hex2rgb(palette.info, 0.6).css,
+                borderColor: palette.transparent,
+                data: response.datasets[1].data
+              }
+            ],
+          }
+      })
+    },
     methods: {
       launchEpicmaxToast () {
         this.showToast(`Let's work together!`, {
